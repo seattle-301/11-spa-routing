@@ -1,4 +1,4 @@
-![CF](https://i.imgur.com/7v5ASc8.png)  11-SPA-routing
+![CF](https://i.imgur.com/7v5ASc8.png)  Lab 11 SPA Routing
 =======
 [![Build Status](https://travis-ci.org/codefellows-seattle-301d4/11-SPA-routing.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d4/11-SPA-routing)
 
