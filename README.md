@@ -1,4 +1,6 @@
-# Pair Assignment for Class 11 - Routing and Web Requests
+![CF](https://i.imgur.com/7v5ASc8.png)  11-SPA-routing
+=======
+[![Build Status](https://travis-ci.org/codefellows-seattle-301d4/11-SPA-routing.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d4/11-SPA-routing)
 
 At the heart of every web app is the Web Request-Response Cycle. Pay close attention to how your app is creating and responding to requests. With client-side routing and the History API, we can add a layer of abstraction on top of the traditional routing.
 
