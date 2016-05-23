@@ -4,7 +4,7 @@
 
 At the heart of every web app is the Web Request-Response Cycle. Pay close attention to how your app is creating and responding to requests. With client-side routing and the History API, we can add a layer of abstraction on top of the traditional routing.
 
-**Ensure you run the blog with `node server.js` from the `starter-code` directory, not the `live-server` command.**
+**Ensure you run the blog with `node server.js` from the `starter-code` directory, not the `live-server` command.  You may also run our blog app with the `nodemon` package which is available through npm. `npm install -g nodemon`. This will also enable reloading pages after changes occur in our code.**
 
 The URLs that your app can respond to maps to your apps capabilities. Consider what public routes your app should have. Use page.js to expose those as navigable URLs. Then setup controllers to handle those URLs, all on the client side.
 
