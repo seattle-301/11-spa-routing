@@ -17,7 +17,7 @@
     return template(this);
   };
 
-  Article.createTable = function(callback) {
+  Article.createTable = function() {
     webDB.execute(
       'CREATE TABLE IF NOT EXISTS articles (' +
         'id INTEGER PRIMARY KEY, ' +
@@ -29,51 +29,46 @@
         'body TEXT NOT NULL);',
       function() {
         console.log('Successfully set up the articles table.');
-        if (callback) callback();
       }
     );
   };
 
-  Article.truncateTable = function(callback) {
+  Article.truncateTable = function() {
     webDB.execute(
-      'DELETE FROM articles;',
-      callback
+      'DELETE FROM articles;'
     );
   };
 
-  Article.prototype.insertRecord = function(callback) {
+  Article.prototype.insertRecord = function() {
     webDB.execute(
       [
         {
           'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
           'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body],
         }
-      ],
-      callback
+      ]
     );
   };
 
-  Article.prototype.deleteRecord = function(callback) {
+  Article.prototype.deleteRecord = function() {
     webDB.execute(
       [
         {
           'sql': 'DELETE FROM articles WHERE id = ?;',
           'data': [this.id]
         }
-      ],
-      callback
+      ]
     );
   };
 
-  Article.prototype.updateRecord = function(callback) {
+  Article.prototype.updateRecord = function() {
     webDB.execute(
       [
         {
           'sql': 'UPDATE articles SET title = ?, author = ?, authorUrl = ?, category = ?, publishedOn = ?, body = ? WHERE id = ?;',
           'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body, this.id]
         }
-      ],
-      callback
+      ]
     );
   };
 
@@ -149,6 +144,7 @@
       Authors: Article.allAuthors(),
     };
   };
-
+  Article.createTable();
+  Article.fetchAll(articleView.renderIndexPage);
   module.Article = Article;
 })(window);

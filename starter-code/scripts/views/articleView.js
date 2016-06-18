@@ -1,6 +1,4 @@
 (function(module) {
-
-  // Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
   var articleView = {};
 
   articleView.handleAuthorFilter = function() {
@@ -29,7 +27,7 @@
     });
   };
 
-  /* TODO: Once the routes are handling / and /about, we can delete
+  /* TODO: Once the routes are handling '/' and '/about', we can delete
       this handleMainNav function. YESSSS!
   /* TODO: Remember to also remove any calls to this function elsewhere. */
   articleView.handleMainNav = function() {
@@ -52,41 +50,6 @@
     });
   };
 
-  articleView.initNewArticlePage = function() {
-    $('.tab-content').show();
-    $('#export-field').hide();
-    $('#article-json').on('focus', function(){
-      this.select();
-    });
-
-    $('#new-form').on('change', 'input, textarea', articleView.create);
-  };
-
-  articleView.create = function() {
-    var article;
-    $('#articles').empty();
-
-    // Instantiate an article based on what's in the form fields:
-    article = new Article({
-      title: $('#article-title').val(),
-      author: $('#article-author').val(),
-      authorUrl: $('#article-author-url').val(),
-      category: $('#article-category').val(),
-      body: $('#article-body').val(),
-      publishedOn: $('#article-published:checked').length ? new Date() : null
-    });
-
-    $('#articles').append(article.toHtml($('#article-template')));
-
-    $('pre code').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-
-    // Export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-    $('#export-field').show();
-    $('#article-json').val(JSON.stringify(article) + ',');
-  };
-
   articleView.initIndexPage = function() {
     Article.all.forEach(function(a){
       if($('#category-filter option:contains("'+ a.category + '")').length === 0) {
@@ -103,17 +66,6 @@
     articleView.handleMainNav();
     articleView.setTeasers();
   };
-
-  articleView.initAdminPage = function() {
-    var template = Handlebars.compile($('#author-template').text());
-
-    Article.numWordsByAuthor().forEach(function(stat) {
-      $('.author-stats').append(template(stat));
-    });
-
-    $('#blog-stats .articles').text(Article.all.length);
-    $('#blog-stats .words').text(Article.numWordsAll());
-  };
-
+  
   module.articleView = articleView;
 })(window);
