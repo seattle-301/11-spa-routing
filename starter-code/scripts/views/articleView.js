@@ -27,10 +27,8 @@
     });
   };
   /* TODO: Once the routes are handling '/' and '/about', we can delete
-      this handleMainNav function. YESSSS!
-  // DONE!
-  /* TODO: Remember to also remove any calls to this function elsewhere. */
-  // DONE!
+    this handleMainNav function. YESSSS!
+    DONE! */
 
   articleView.setTeasers = function() {
     $('h2').prev('p').remove();
@@ -63,11 +61,11 @@
       };
       $('#articles').append(a.toHtml('#article-template'));
     });
+    /* TODO: Remember to also remove any calls to the handleMainNav function elsewhere.
+      DONE! */
     articleView.handleCategoryFilter();
     articleView.handleAuthorFilter();
     articleView.setTeasers();
   };
-  Article.createTable();
-  Article.fetchAll();
   module.articleView = articleView;
 })(window);
