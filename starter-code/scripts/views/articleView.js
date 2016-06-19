@@ -26,7 +26,6 @@
       $('#author-filter').val('');
     });
   };
-
   /* TODO: Once the routes are handling '/' and '/about', we can delete
       this handleMainNav function. YESSSS!
   // DONE!
