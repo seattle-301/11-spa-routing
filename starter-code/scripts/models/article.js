@@ -5,10 +5,10 @@
     },this);
   }
 
-  Article.all = [];
+  Article.allArticles = [];
 
-  Article.prototype.toHtml = function() {
-    var template = Handlebars.compile($('#article-template').text());
+  Article.prototype.toHtml = function(scriptTemplateId) {
+    var template = Handlebars.compile($(scriptTemplateId).text());
 
     this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
     this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
@@ -73,16 +73,17 @@
   };
 
   Article.loadAll = function(rows) {
-    Article.all = rows.map(function(ele) {
+    Article.allArticles = rows.map(function(ele) {
       return new Article(ele);
     });
   };
 
-  Article.fetchAll = function(next) {
+  Article.fetchAll = function() {
     webDB.execute('SELECT * FROM articles ORDER BY publishedOn DESC', function(rows) {
       if (rows.length) {
         Article.loadAll(rows);
-        next();
+        articleView.renderIndexPage();
+        articleView.initAdminPage();
       } else {
         $.getJSON('/data/hackerIpsum.json', function(rawData) {
           // Cache the json, so we don't need to request it next time:
@@ -90,9 +91,10 @@
             var article = new Article(item); // Instantiate an article based on item from JSON
             article.insertRecord(); // Cache the article in DB
           });
-          webDB.execute('SELECT * FROM articles', function(rows) {
+          webDB.execute('SELECT * FROM articles ORDER BY publishedOn DESC', function(rows) {
             Article.loadAll(rows);
-            next();
+            articleView.renderIndexPage();
+            articleView.initAdminPage();
           });
         });
       }
@@ -100,7 +102,7 @@
   };
 
   Article.allAuthors = function() {
-    return Article.all.map(function(article) {
+    return Article.allArticles.map(function(article) {
       return article.author;
     })
     .reduce(function(names, name) {
@@ -112,8 +114,8 @@
   };
 
   Article.numWordsAll = function() {
-    return Article.all.map(function(article) {
-      return article.body.match(/\b\w+/g).length;
+    return Article.allArticles.map(function(article) {
+      return article.body.match(/\w+/g).length;
     })
     .reduce(function(a, b) {
       return a + b;
@@ -124,11 +126,11 @@
     return Article.allAuthors().map(function(author) {
       return {
         name: author,
-        numWords: Article.all.filter(function(a) {
+        numWords: Article.allArticles.filter(function(a) {
           return a.author === author;
         })
         .map(function(a) {
-          return a.body.match(/\b\w+/g).length;
+          return a.body.match(/\w+/g).length;
         })
         .reduce(function(a, b) {
           return a + b;
@@ -139,12 +141,10 @@
 
   Article.stats = function() {
     return {
-      numArticles: Article.all.length,
+      numArticles: Article.allArticles.length,
       numWords: Article.numwordsAll(),
       Authors: Article.allAuthors(),
     };
   };
-  Article.createTable();
-  Article.fetchAll(articleView.renderIndexPage);
   module.Article = Article;
 })(window);
