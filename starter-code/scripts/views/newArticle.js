@@ -19,16 +19,10 @@ newArticle.create = function() {
     body: $('#article-body').val(),
     publishedOn: $('#article-published:checked').length ? new Date() : null
   });
-
-  // Use the Handblebars template to put this new article into the DOM:
   $('#article-preview').append(formArticle.toHtml('#article-template'));
-
-  // Activate the highlighting of any code blocks:
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
-
-  // Export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
   $('#export-field').show();
   $('#article-json').val(JSON.stringify(formArticle) + ',');
 };

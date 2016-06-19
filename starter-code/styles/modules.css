@@ -39,8 +39,13 @@
   list-style: none;
 }
 
-.template {
-  display: none;
+#ajax-spinner h2 {
+  display: inline-block;
+  margin-bottom: 5rem;
+}
+
+#ajax-spinner img {
+  margin-top: 3rem;
 }
 
 .byline {

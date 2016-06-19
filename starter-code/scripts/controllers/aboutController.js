@@ -2,7 +2,7 @@
   var aboutController = {};
 
   aboutController.index = function() {
-    /* TODO: We only want to display the about section! */
+    /* TODO: Reveal only the about section! */
   };
 
   module.aboutController = aboutController;

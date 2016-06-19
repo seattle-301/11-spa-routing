@@ -5,10 +5,10 @@
     },this);
   }
 
-  Article.all = [];
+  Article.allArticles = [];
 
-  Article.prototype.toHtml = function() {
-    var template = Handlebars.compile($('#article-template').text());
+  Article.prototype.toHtml = function(scriptTemplateId) {
+    var template = Handlebars.compile($(scriptTemplateId).text());
 
     this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
     this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
@@ -100,7 +100,7 @@
   };
 
   Article.allAuthors = function() {
-    return Article.all.map(function(article) {
+    return Article.allArticles.map(function(article) {
       return article.author;
     })
     .reduce(function(names, name) {
@@ -112,8 +112,8 @@
   };
 
   Article.numWordsAll = function() {
-    return Article.all.map(function(article) {
-      return article.body.match(/\b\w+/g).length;
+    return Article.allArticles.map(function(article) {
+      return article.body.match(/\w+/g).length;
     })
     .reduce(function(a, b) {
       return a + b;
@@ -128,7 +128,7 @@
           return a.author === author;
         })
         .map(function(a) {
-          return a.body.match(/\b\w+/g).length;
+          return a.body.match(/\w+/g).length;
         })
         .reduce(function(a, b) {
           return a + b;
@@ -139,7 +139,7 @@
 
   Article.stats = function() {
     return {
-      numArticles: Article.all.length,
+      numArticles: Article.allArticles.length,
       numWords: Article.numwordsAll(),
       Authors: Article.allAuthors(),
     };

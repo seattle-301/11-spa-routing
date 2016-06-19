@@ -51,6 +51,10 @@
       </nav>
     </header>
     <main>
+      <section id="ajax-spinner" class="tab-content">
+        <h2>Retrieving latest posts ...</h2>
+        <img src="vendor/assets/gears.gif">
+      </section>
       <section id="articles" class="tab-content">
         <div>
           <ul id="filters">
@@ -85,6 +89,7 @@
       &copy; 2016 Code Fellows | Static Blog | Happy Ipsum!
     </footer>
     <!-- Vendor Files -->
+    <!-- TODO: link our new page.js library within vendors-->
     <script src="/vendor/scripts/jquery-2.1.4.js"></script>
     <script src="/vendor/scripts/handlebars.js"></script>
     <script src="/vendor/scripts/marked.js"></script>
@@ -94,6 +99,7 @@
     <script src="/scripts/models/article.js"></script>
     <!-- View Files -->
     <script src="/scripts/views/articleView.js"></script>
-    <!-- Controller Files -->
+    <script src="/scripts/views/adminView.js"></script>
+    <!-- TODO: place here our Controller Files -->
   </body>
 </html>
