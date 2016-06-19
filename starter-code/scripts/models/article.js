@@ -145,6 +145,5 @@
     };
   };
   Article.createTable();
-  Article.fetchAll(articleView.renderIndexPage);
   module.Article = Article;
 })(window);
