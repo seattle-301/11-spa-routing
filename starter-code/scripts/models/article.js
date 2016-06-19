@@ -73,7 +73,7 @@
   };
 
   Article.loadAll = function(rows) {
-    Article.all = rows.map(function(ele) {
+    Article.allArticles = rows.map(function(ele) {
       return new Article(ele);
     });
   };
@@ -90,7 +90,7 @@
             var article = new Article(item); // Instantiate an article based on item from JSON
             article.insertRecord(); // Cache the article in DB
           });
-          webDB.execute('SELECT * FROM articles', function(rows) {
+          webDB.execute('SELECT * FROM articles ORDER BY publishedOn DESC', function(rows) {
             Article.loadAll(rows);
             next();
           });
@@ -124,7 +124,7 @@
     return Article.allAuthors().map(function(author) {
       return {
         name: author,
-        numWords: Article.all.filter(function(a) {
+        numWords: Article.allArticles.filter(function(a) {
           return a.author === author;
         })
         .map(function(a) {
