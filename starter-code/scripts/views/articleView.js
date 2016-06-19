@@ -69,6 +69,6 @@
     articleView.setTeasers();
   };
   Article.createTable();
-  Article.fetchAll(articleView.renderIndexPage);
+  Article.fetchAll();
   module.articleView = articleView;
 })(window);
