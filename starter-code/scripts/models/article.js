@@ -146,5 +146,7 @@
       Authors: Article.allAuthors(),
     };
   };
+  Article.createTable();
+  Article.fetchAll();
   module.Article = Article;
 })(window);
