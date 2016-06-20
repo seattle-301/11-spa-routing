@@ -29,6 +29,7 @@ See a [working deployed version](https://cf-mvc-blog--class11.aerobatic.io/) of 
 ## Stretch goals:
  1. As an admin, I want the url for my stats page to be part of my SPA, so that it works like the other "pages" of my app.
   - Where should the admin content go? You probably need to move a section out of admin.html into index.html.
+  	- How should we now navigate to '/admin'?
   - Add a controller and a route so that `/admin` triggers the proper rendering of the stats section.
 	- Since we have eliminated another request to the server, we may need to rethink how Article.fetchAll behaves.
 
