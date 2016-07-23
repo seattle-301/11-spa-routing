@@ -1,8 +1,7 @@
 (function(module) {
   var adminController = {
     index: function() {
-      $('main > section').hide();
-      $('#blog-stats').fadeIn();
+      $('#blog-stats').fadeIn().siblings().hide();
     }
   };
   module.adminController = adminController;

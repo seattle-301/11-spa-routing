@@ -1,6 +1,6 @@
 ![CF](https://i.imgur.com/7v5ASc8.png)  Lab 11 SPA Routing
 =======
-[![Build Status](https://travis-ci.org/codefellows-seattle-301d4/11-SPA-routing.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d4/11-SPA-routing) [![GitHub issues](https://img.shields.io/badge/Issues%3F-Ask%20for%20Help!-orange.svg)](https://github.com/codefellows/seattle-301d7/issues/new)
+[![Build Status](https://travis-ci.org/codefellows-seattle-301d9/11-spa-routing.svg?branch=master)](https://travis-ci.org/codefellows-seattle-301d9/11-spa-routing) [![GitHub issues](https://img.shields.io/badge/Issues%3F-Ask%20for%20Help!-orange.svg)](https://github.com/codefellows/seattle-301d7/issues/new)
 
 At the heart of every web app is the Web Request-Response Cycle. Pay close attention to how your app is creating and responding to requests. With client-side routing and the History API, we can add a layer of abstraction on top of traditional routing.
 
