@@ -1,19 +1,17 @@
 (function(module) {
   function Article (opts) {
-    Object.keys(opts).forEach(function(e, index, keys) {
-      this[e] = opts[e];
-    },this);
+    Object.keys(opts).forEach(function(element) {
+      this[element] = opts[element];
+    }, this);
   }
 
   Article.allArticles = [];
 
   Article.prototype.toHtml = function(scriptTemplateId) {
     var template = Handlebars.compile($(scriptTemplateId).text());
-
     this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
     this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
     this.body = marked(this.body);
-
     return template(this);
   };
 
@@ -85,10 +83,9 @@
         next();
       } else {
         $.getJSON('/data/hackerIpsum.json', function(rawData) {
-          // Cache the json, so we don't need to request it next time:
           rawData.forEach(function(item) {
-            var article = new Article(item); // Instantiate an article based on item from JSON
-            article.insertRecord(); // Cache the article in DB
+            var article = new Article(item);
+            article.insertRecord();
           });
           webDB.execute('SELECT * FROM articles ORDER BY publishedOn DESC', function(rows) {
             Article.loadAll(rows);
@@ -135,14 +132,6 @@
         })
       };
     });
-  };
-
-  Article.stats = function() {
-    return {
-      numArticles: Article.allArticles.length,
-      numWords: Article.numwordsAll(),
-      Authors: Article.allAuthors(),
-    };
   };
   Article.createTable();
   module.Article = Article;
