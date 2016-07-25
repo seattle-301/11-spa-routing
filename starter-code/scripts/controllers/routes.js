@@ -2,9 +2,9 @@
     by registering each URL your app can handle, linked to a
     single controller function to handle it: */
 
-page('/', articleController.index);
-page('/about', aboutController.index);
-page('/admin', adminController.index);
+page('/', articleController.reveal);
+page('/about', aboutController.reveal);
+page('/admin', adminController.reveal);
 /* TODO: What function do we call to activate page.js?
     Fire it off now, to execute it: */
 page();

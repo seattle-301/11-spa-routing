@@ -1,6 +1,6 @@
 (function(module) {
   var adminController = {
-    index: function() {
+    reveal: function() {
       $('#blog-stats').fadeIn().siblings().hide();
     }
   };
