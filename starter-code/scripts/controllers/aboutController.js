@@ -1,7 +1,7 @@
 (function(module) {
   var aboutController = {};
 
-  aboutController.index = function() {
+  aboutController.reveal = function() {
     /* TODO: Reveal only the about section! */
   };
 

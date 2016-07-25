@@ -1,7 +1,7 @@
 (function(module) {
   var articleController = {};
 
-  articleController.index = function() {
+  articleController.reveal = function() {
     /* TODO: Reveal only the articles section! */
   };
 
