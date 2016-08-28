@@ -59,14 +59,14 @@
   articleView.renderIndexPage = function() {
     $('#ajax-spinner').fadeOut();
     $('#filters').fadeIn();
-    Article.allArticles.forEach(function(a){
-      if($('#category-filter option:contains("'+ a.category + '")').length === 0) {
-        $('#category-filter').append(a.toHtml('#category-filter-template'));
+    Article.allArticles.forEach(function(article){
+      $('#articles').append(article.toHtml('#article-template'));
+      if($('#category-filter option:contains("'+ article.category + '")').length === 0) {
+        $('#category-filter').append(article.toHtml('#category-filter-template'));
       };
-      if($('#author-filter option:contains("'+ a.author + '")').length === 0) {
-        $('#author-filter').append(a.toHtml('#author-filter-template'));
+      if($('#author-filter option:contains("'+ article.author + '")').length === 0) {
+        $('#author-filter').append(article.toHtml('#author-filter-template'));
       };
-      $('#articles').append(a.toHtml('#article-template'));
     });
     /* TODO: Remember to also remove any calls to the handleMainNav function elsewhere. */
     articleView.handleCategoryFilter();

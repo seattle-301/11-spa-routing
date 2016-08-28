@@ -82,8 +82,8 @@
         Article.loadAll(rows);
         next();
       } else {
-        $.getJSON('/data/hackerIpsum.json', function(rawData) {
-          rawData.forEach(function(item) {
+        $.getJSON('/data/hackerIpsum.json', function(responseData) {
+          responseData.forEach(function(item) {
             var article = new Article(item);
             article.insertRecord();
           });
@@ -121,14 +121,14 @@
     return Article.allAuthors().map(function(author) {
       return {
         name: author,
-        numWords: Article.allArticles.filter(function(a) {
-          return a.author === author;
+        numWords: Article.allArticles.filter(function(article) {
+          return article.author === author;
         })
-        .map(function(a) {
-          return a.body.match(/\w+/g).length;
+        .map(function(uniqueAuthorsArticle) {
+          return uniqueAuthorsArticle.body.match(/\w+/g).length;
         })
-        .reduce(function(a, b) {
-          return a + b;
+        .reduce(function(wordCount, nextWordCount) {
+          return wordCount + nextWordCount;
         })
       };
     });
