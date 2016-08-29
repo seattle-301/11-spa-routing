@@ -26,10 +26,10 @@ See a [working deployed version](https://cf-mvc-blog--class11.aerobatic.io/) of 
   - Fill in the contents of `aboutController.js`, so the `#about` section is revealed when the about index action is triggered.
   - Ensure the function is linked to a route, so visitors to `/about` see your info, and not the blog posts.
 
-## Stretch goals:
+## Stretch goals (not required):
  1. As an admin, I want the url for my stats page to be part of my SPA, so that it works like the other "pages" of my app.
   - Where should the admin content go? You probably need to move a section out of admin.html into index.html.
-  	- How should we now navigate to '/admin'?
+  - How should we now navigate to '/admin'?
   - Add a controller and a route so that `/admin` triggers the proper rendering of the stats section.
 	- Since we have eliminated another request to the server, we may need to rethink how Article.fetchAll behaves.
 
