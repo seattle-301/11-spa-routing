@@ -5,8 +5,6 @@
     }, this);
   }
 
-  Article.allArticles = [];
-
   Article.prototype.toHtml = function(scriptTemplateId) {
     var template = Handlebars.compile($(scriptTemplateId).text());
     this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
@@ -39,34 +37,28 @@
 
   Article.prototype.insertRecord = function() {
     webDB.execute(
-      [
-        {
-          'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
-          'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body],
-        }
-      ]
+      [{
+        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
+        'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body],
+      }]
     );
   };
 
   Article.prototype.deleteRecord = function() {
     webDB.execute(
-      [
-        {
-          'sql': 'DELETE FROM articles WHERE id = ?;',
-          'data': [this.id]
-        }
-      ]
+      [{
+        'sql': 'DELETE FROM articles WHERE id = ?;',
+        'data': [this.id]
+      }]
     );
   };
 
   Article.prototype.updateRecord = function() {
     webDB.execute(
-      [
-        {
-          'sql': 'UPDATE articles SET title = ?, author = ?, authorUrl = ?, category = ?, publishedOn = ?, body = ? WHERE id = ?;',
-          'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body, this.id]
-        }
-      ]
+      [{
+        'sql': 'UPDATE articles SET title = ?, author = ?, authorUrl = ?, category = ?, publishedOn = ?, body = ? WHERE id = ?;',
+        'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.body, this.id]
+      }]
     );
   };
 

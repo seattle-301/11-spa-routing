@@ -30,7 +30,7 @@
       this handleMainNav function. YESSSS! */
 
   articleView.handleMainNav = function() {
-    $('.main-nav').on('click', '.tab', function(e) {
+    $('.main-nav').on('click', '.tab', function() {
       $('.tab-content').hide();
       $('#' + $(this).data('content')).fadeIn();
     });
@@ -41,8 +41,8 @@
     $('h2').prev('p').remove();
     $('h2').next('p').remove();
     $('.article-body *:nth-of-type(n+2)').hide();
-    $('article').on('click', 'a.read-on', function(e) {
-      e.preventDefault();
+    $('article').on('click', 'a.read-on', function(event) {
+      event.preventDefault();
       if($(this).text() === 'Read on →') {
         $(this).parent().find('*').fadeIn();
         $(this).html('Show Less &larr;');
@@ -68,7 +68,7 @@
         $('#author-filter').append(article.toHtml('#author-filter-template'));
       };
     });
-    /* TODO: Remember to also remove any calls to the handleMainNav function elsewhere. */
+    /* TODO: Remember to also remove any invocations of handleMainNav... */
     articleView.handleCategoryFilter();
     articleView.handleAuthorFilter();
     articleView.handleMainNav();
